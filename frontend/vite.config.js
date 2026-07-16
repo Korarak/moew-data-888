@@ -8,4 +8,8 @@ export default defineConfig({
     vue(),
     tailwindcss(),
   ],
+  server: {
+    host: '0.0.0.0', // needed for docker
+    port: 5173
+  }
 })

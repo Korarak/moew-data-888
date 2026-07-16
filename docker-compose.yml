@@ -11,13 +11,19 @@ services:
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_NAME=moew_db
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
     depends_on:
       - db
 
   frontend:
     build: ./frontend
     ports:
-      - "8080:80"
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     depends_on:
       - backend
 
