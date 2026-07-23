@@ -30,8 +30,17 @@ async function initDB() {
           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )
       `);
+
+      await connection.query(`
+        CREATE TABLE IF NOT EXISTS users (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          username VARCHAR(100) NOT NULL UNIQUE,
+          password VARCHAR(255) NOT NULL,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+      `);
       
-      console.log('Database initialized successfully: "cats" table is ready.');
+      console.log('Database initialized successfully: "cats" and "users" tables are ready.');
       connection.release();
       return;
     } catch (err) {
